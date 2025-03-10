@@ -10,7 +10,6 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState<Book[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,10 +29,10 @@ export default function Home() {
       if (res.ok) {
         setResponse(data.response);
       } else {
-        setError(`Error: ${data.error}`);
+        console.log("error");
       }
     } catch {
-      setError("Failed to fetch response.");
+      console.log("error");
     }
 
     setLoading(false);
@@ -87,7 +86,6 @@ export default function Home() {
         </button>
       </form>
 
-      {error.length > 0 && <div>{error}</div>}
       {response && response.length > 0 && (
         <div>
           <div className="px-10 py-2 text-black text-2xl">
