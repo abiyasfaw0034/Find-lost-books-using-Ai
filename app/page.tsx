@@ -33,10 +33,11 @@ export default function Home() {
 
     setLoading(false);
   };
+  console.log(response);
 
   return (
     <div className="flex flex-col w-full mx-auto">
-      <div className="relative p-10 text-2xl text-center text-green-400  overflow-hidden">
+      <div className="relative p-10 text-2xl text-center overflow-hidden">
         {/* Video background */}
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
@@ -55,7 +56,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black opacity-50"></div>
 
         {/* Content */}
-        <div className="relative z-10 text-2xl font-black">
+        <div className="relative z-10 text-2xl font-black text-white">
           Don&apos;t remember the name of the Book? Don&apos;t worry, we got
           you!
         </div>
@@ -83,7 +84,7 @@ export default function Home() {
 
       {response && response.length > 0 && (
         <div>
-          <div className="p-10 text-black text-2xl">
+          <div className="px-10 py-2 text-black text-2xl">
             Similar Books with your description
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-10 py-3">
