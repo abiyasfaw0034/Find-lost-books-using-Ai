@@ -1,11 +1,16 @@
 "use client";
 import SearchResetForm from "@/components/SearchResetForm";
 import { useState } from "react";
+type Book = {
+  title: string;
+  author: string;
+};
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [response, setResponse] = useState<string | any[]>([]);
+  const [response, setResponse] = useState<Book[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,10 +30,10 @@ export default function Home() {
       if (res.ok) {
         setResponse(data.response);
       } else {
-        setResponse(`Error: ${data.error}`);
+        setError(`Error: ${data.error}`);
       }
-    } catch (error) {
-      setResponse("Failed to fetch response.");
+    } catch {
+      setError("Failed to fetch response.");
     }
 
     setLoading(false);
@@ -82,6 +87,7 @@ export default function Home() {
         </button>
       </form>
 
+      {error.length > 0 && <div>{error}</div>}
       {response && response.length > 0 && (
         <div>
           <div className="px-10 py-2 text-black text-2xl">
