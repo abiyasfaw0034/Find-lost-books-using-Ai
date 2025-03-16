@@ -33,9 +33,17 @@ export async function POST(req: Request) {
     const booksList = aiResponse
       .split("\n")
       .map((line) => {
-        const [title, author] = line.split(", Author: ");
+        const cleanedLine = line.replace(/^\d+\.\s*/, "").trim();
+        const [title, author] = cleanedLine.split(", Author: ");
         if (title && author) {
-          return { title: title.replace("Title: ", ""), author: author };
+          return {
+            title: title
+              .replace("**Title: ", "")
+              .replace("Title:", "")
+              .replace("Title**:", "")
+              .trim(),
+            author: author,
+          };
         }
       })
       .filter((book) => book);

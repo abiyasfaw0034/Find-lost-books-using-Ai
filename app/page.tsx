@@ -1,6 +1,8 @@
 "use client";
+import Link from "next/link";
 import SearchResetForm from "@/components/SearchResetForm";
 import { useState } from "react";
+
 type Book = {
   title: string;
   author: string;
@@ -37,35 +39,9 @@ export default function Home() {
 
     setLoading(false);
   };
-  console.log(response);
 
   return (
     <div className="flex flex-col w-full mx-auto">
-      <div className="relative p-10 text-2xl text-center overflow-hidden">
-        {/* Video background */}
-        <video
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-        >
-          <source
-            src="https://www.w3schools.com/html/mov_bbb.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
-
-        {/* Overlay to make text readable */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-
-        {/* Content */}
-        <div className="relative z-10 text-2xl font-black text-white">
-          Don&apos;t remember the name of the Book? Don&apos;t worry, we got
-          you!
-        </div>
-      </div>
-
       <form
         onSubmit={handleSubmit}
         className="search-form flex justify-center items-center px-10 py-3 gap-5"
@@ -86,22 +62,24 @@ export default function Home() {
         </button>
       </form>
 
-      {response && response.length > 0 && (
+      {response.length > 0 && (
         <div>
           <div className="px-10 py-2 text-black text-2xl">
             Similar Books with your description
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-10 py-3">
             {response.map((book, index) => (
-              <div
+              <Link
                 key={index}
-                className="p-4 border border-gray-300 rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow duration-200"
+                href={`/book/${encodeURIComponent(book.title)}`}
               >
-                <h3 className="text-lg font-semibold">
-                  {book.title.replace("**", "")}
-                </h3>
-                <p className="text-sm text-gray-500">Author: {book.author}</p>
-              </div>
+                <div className="p-4 border border-gray-300 rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow duration-200 cursor-pointer">
+                  <h3 className="text-lg font-semibold">
+                    {book.title.replace("**", "")}
+                  </h3>
+                  <p className="text-sm text-gray-500">Author: {book.author}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
