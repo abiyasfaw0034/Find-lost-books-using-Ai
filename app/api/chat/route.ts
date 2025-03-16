@@ -41,6 +41,7 @@ export async function POST(req: Request) {
               .replace("**Title: ", "")
               .replace("Title:", "")
               .replace("Title**:", "")
+              .replace("**", "")
               .trim(),
             author: author,
           };
