@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -47,7 +46,8 @@ export default function DetailPage() {
 
   if (loading)
     return <div className="text-center text-3xl p-20">Loading...</div>;
-  if (!bookDetails) return <div className="text-3xl p-20">Book not found</div>;
+  if (!bookDetails)
+    return <div className="text-3xl p-20 m-10">Book not found</div>;
 
   return (
     <div className="p-10">

@@ -12,8 +12,10 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState<Book[]>([]);
   const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  // hello
+  // console.log("heyy");
+  // const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!query.trim()) return;
 
