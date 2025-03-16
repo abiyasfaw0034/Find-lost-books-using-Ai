@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { auto } from "groq-sdk/_shims/registry.mjs";
 
 type BookDetails = {
   title: string;

@@ -40,6 +40,11 @@ export async function GET(
 
     return NextResponse.json(bookDetails);
   } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    } else {
+      console.log(String(error));
+    }
     return NextResponse.json(
       { error: "Failed to fetch book details" },
       { status: 500 }
